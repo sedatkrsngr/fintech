@@ -1,9 +1,12 @@
+using Fintech.ApiGateway.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services.AddApiGatewayServices(builder.Configuration);
 
 var app = builder.Build();
 
+app.UseApiGatewayPipeline();
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
