@@ -1,0 +1,9 @@
+namespace Fintech.TransferService.Api.Extensions;
+
+public static class ApplicationBuilderExtensions
+{
+    public static IApplicationBuilder UseApiPipeline(this IApplicationBuilder app)
+    {
+        return app;
+    }
+}

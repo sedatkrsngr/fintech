@@ -1,0 +1,8 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="_UseSequentialBuildProject" BeforeTargets="Build">
+    <ItemGroup>
+      <ProjectReference Remove="@(ProjectReference)" />
+      <ProjectReference Include="$(MSBuildThisFileDirectory)Build.Sequential.proj" />
+    </ItemGroup>
+  </Target>
+</Project>
