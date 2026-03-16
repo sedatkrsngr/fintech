@@ -1,0 +1,3 @@
+namespace Fintech.NotificationService.Application.Deliveries.GetNotificationDeliveryById;
+
+public sealed record GetNotificationDeliveryByIdQuery(Guid NotificationDeliveryId);
