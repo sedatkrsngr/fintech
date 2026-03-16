@@ -1,0 +1,20 @@
+services:
+  wallet-postgres:
+    image: postgres:17
+    container_name: fintech-wallet-postgres
+    environment:
+      POSTGRES_DB: fintech_wallet_dev
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - wallet-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d fintech_wallet_dev"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  wallet-postgres-data:
