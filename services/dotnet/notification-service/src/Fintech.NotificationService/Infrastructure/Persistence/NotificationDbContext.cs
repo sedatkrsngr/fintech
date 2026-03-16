@@ -14,6 +14,8 @@ public sealed class NotificationDbContext : DbContext
 
     public DbSet<NotificationDelivery> NotificationDeliveries => Set<NotificationDelivery>();
 
+    public DbSet<NotificationRoutingRule> NotificationRoutingRules => Set<NotificationRoutingRule>();
+
     public DbSet<EmailDelivery> EmailDeliveries => Set<EmailDelivery>();
 
     public DbSet<SmsDelivery> SmsDeliveries => Set<SmsDelivery>();

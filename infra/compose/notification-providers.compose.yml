@@ -1,0 +1,14 @@
+services:
+  mailhog:
+    image: mailhog/mailhog:v1.0.1
+    container_name: fintech-mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+  mailpit:
+    image: axllent/mailpit:latest
+    container_name: fintech-mailpit
+    ports:
+      - "1026:1025"
+      - "8026:8025"

@@ -6,18 +6,33 @@ namespace Fintech.NotificationService.Application.Deliveries.CreateEmailDelivery
 public sealed class CreateEmailDeliveryHandler
 {
     private readonly INotificationDeliveryRepository _notificationDeliveryRepository;
+    private readonly INotificationProviderResolver _notificationProviderResolver;
 
-    public CreateEmailDeliveryHandler(INotificationDeliveryRepository notificationDeliveryRepository)
+    public CreateEmailDeliveryHandler(
+        INotificationDeliveryRepository notificationDeliveryRepository,
+        INotificationProviderResolver notificationProviderResolver)
     {
         _notificationDeliveryRepository = notificationDeliveryRepository;
+        _notificationProviderResolver = notificationProviderResolver;
     }
 
     public async Task<CreateEmailDeliveryResult> HandleAsync(
         CreateEmailDeliveryCommand command,
         CancellationToken cancellationToken = default)
     {
+        var provider = await _notificationProviderResolver.ResolveEmailProviderAsync(
+            command.ProviderId,
+            cancellationToken);
+
         var delivery = NotificationDelivery.Create(command.ProviderId, command.Channel);
         var emailDelivery = EmailDelivery.Create(delivery.Id, command.ToEmail, command.Subject, command.Body);
+
+        await provider.SendAsync(
+            command.ProviderId,
+            emailDelivery.ToEmail.Value,
+            emailDelivery.Subject,
+            emailDelivery.Body,
+            cancellationToken);
 
         await _notificationDeliveryRepository.AddEmailDeliveryAsync(delivery, emailDelivery, cancellationToken);
 
