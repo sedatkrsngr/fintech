@@ -30,6 +30,8 @@ public sealed class WalletConfiguration : IEntityTypeConfiguration<Wallet>
         builder.Property(x => x.CreatedAtUtc)
             .IsRequired();
 
+        builder.Ignore(x => x.CreatedEvent);
+
         builder.OwnsOne(x => x.Balance, balanceBuilder =>
         {
             balanceBuilder.Property(x => x.Amount)

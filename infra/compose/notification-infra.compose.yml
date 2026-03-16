@@ -1,0 +1,20 @@
+services:
+  notification-postgres:
+    image: postgres:17
+    container_name: fintech-notification-postgres
+    environment:
+      POSTGRES_DB: fintech_notification_dev
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5436:5432"
+    volumes:
+      - notification-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d fintech_notification_dev"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  notification-postgres-data:

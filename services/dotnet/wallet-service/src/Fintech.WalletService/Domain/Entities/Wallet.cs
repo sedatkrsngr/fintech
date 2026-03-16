@@ -1,4 +1,5 @@
 using Fintech.WalletService.Domain.Enums;
+using Fintech.WalletService.Domain.Events;
 using Fintech.WalletService.Domain.ValueObjects;
 
 namespace Fintech.WalletService.Domain.Entities;
@@ -29,6 +30,8 @@ public sealed class Wallet
 
     public DateTime CreatedAtUtc { get; private set; }
 
+    public WalletCreated? CreatedEvent { get; private set; }
+
     public static Wallet Create(Guid ownerUserId, Currency currency)
     {
         if (ownerUserId == Guid.Empty)
@@ -36,10 +39,18 @@ public sealed class Wallet
             throw new ArgumentException("Owner user id cannot be empty.", nameof(ownerUserId));
         }
 
-        return new Wallet(
+        var wallet = new Wallet(
             WalletId.New(),
             ownerUserId,
             Money.Create(0m, currency));
+
+        wallet.CreatedEvent = new WalletCreated(
+            wallet.Id,
+            wallet.OwnerUserId,
+            currency,
+            wallet.CreatedAtUtc);
+
+        return wallet;
     }
 
     public void Credit(Money amount)

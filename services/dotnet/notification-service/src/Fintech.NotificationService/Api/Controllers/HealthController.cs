@@ -1,0 +1,18 @@
+using Microsoft.AspNetCore.Mvc;
+
+namespace Fintech.NotificationService.Api.Controllers;
+
+[ApiController]
+[Route("health")]
+public sealed class HealthController : ControllerBase
+{
+    [HttpGet]
+    public IActionResult Get()
+    {
+        return Ok(new
+        {
+            status = "ok",
+            service = "notification-service"
+        });
+    }
+}

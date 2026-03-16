@@ -1,11 +1,11 @@
+using Fintech.NotificationService.Api.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services.AddNotificationApi(builder.Configuration);
 
 var app = builder.Build();
 
-app.UseHttpsRedirection();
-app.UseAuthorization();
-app.MapControllers();
+app.UseNotificationApi();
 
 app.Run();

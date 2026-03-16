@@ -7,7 +7,6 @@ builder.Services.AddApiGatewayServices(builder.Configuration);
 var app = builder.Build();
 
 app.UseApiGatewayPipeline();
-app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 
