@@ -3,6 +3,8 @@
 Thumbs.db
 .idea/
 .vscode/
+.vs/
+*.csproj.user
 
 # Node
 node_modules/
