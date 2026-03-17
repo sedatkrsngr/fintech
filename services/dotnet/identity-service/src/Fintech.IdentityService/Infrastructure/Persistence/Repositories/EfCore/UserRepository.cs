@@ -20,6 +20,12 @@ public sealed class UserRepository : IUserRepository
         await _dbContext.SaveChangesAsync(cancellationToken);
     }
 
+    public async Task UpdateAsync(User user, CancellationToken cancellationToken = default)
+    {
+        _dbContext.Users.Update(user);
+        await _dbContext.SaveChangesAsync(cancellationToken);
+    }
+
     public async Task<User?> GetByIdAsync(UserId userId, CancellationToken cancellationToken = default)
     {
         return await _dbContext.Users

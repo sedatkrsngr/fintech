@@ -24,6 +24,8 @@ public sealed class User
 
     public DateTime CreatedAtUtc { get; }
 
+    public DateTime? EmailVerifiedAtUtc { get; private set; }
+
     public static User Create(Email email, PasswordHash passwordHash)
     {
         return new User(UserId.New(), email, passwordHash);
@@ -37,6 +39,11 @@ public sealed class User
     public void ChangePasswordHash(PasswordHash passwordHash)
     {
         PasswordHash = passwordHash;
+    }
+
+    public void MarkEmailVerified()
+    {
+        EmailVerifiedAtUtc ??= DateTime.UtcNow;
     }
 
     public void Suspend()

@@ -7,6 +7,7 @@ using Fintech.NotificationService.Application.Deliveries.CreateSmsDelivery;
 using Fintech.NotificationService.Application.Deliveries.GetNotificationDeliveryById;
 using Fintech.NotificationService.Application.Routing.CreateNotificationRoutingRule;
 using Fintech.NotificationService.Application.Routing.GetNotificationRoutingRuleById;
+using Fintech.NotificationService.Application.Messages.SendEmailMessage;
 using Fintech.NotificationService.Configuration;
 using Fintech.NotificationService.Infrastructure.Persistence;
 using Fintech.NotificationService.Infrastructure.Persistence.Repositories.EfCore;
@@ -54,6 +55,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<GetNotificationDeliveryByIdHandler>();
         services.AddScoped<CreateNotificationRoutingRuleHandler>();
         services.AddScoped<GetNotificationRoutingRuleByIdHandler>();
+        services.AddScoped<SendEmailMessageHandler>();
 
         return services;
     }

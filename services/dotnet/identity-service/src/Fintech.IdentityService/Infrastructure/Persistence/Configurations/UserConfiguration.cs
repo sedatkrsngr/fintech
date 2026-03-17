@@ -42,5 +42,7 @@ public sealed class UserConfiguration : IEntityTypeConfiguration<User>
 
         builder.Property(x => x.CreatedAtUtc)
             .IsRequired();
+
+        builder.Property(x => x.EmailVerifiedAtUtc);
     }
 }

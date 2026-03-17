@@ -1,3 +1,4 @@
+using Fintech.Contracts.Notifications;
 using Fintech.NotificationService.Domain.Enums;
 
 namespace Fintech.NotificationService.Application.Routing.GetNotificationRoutingRuleById;

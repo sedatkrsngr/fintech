@@ -18,13 +18,19 @@ public sealed class IdentityDbContext : DbContext
 
     public DbSet<ApiKey> ApiKeys => Set<ApiKey>();
 
+    public DbSet<EmailVerificationToken> EmailVerificationTokens => Set<EmailVerificationToken>();
+
     public DbSet<Group> Groups => Set<Group>();
+
+    public DbSet<PasswordResetToken> PasswordResetTokens => Set<PasswordResetToken>();
 
     public DbSet<Permission> Permissions => Set<Permission>();
 
     public DbSet<Role> Roles => Set<Role>();
 
     public DbSet<RolePermission> RolePermissions => Set<RolePermission>();
+
+    public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
 
     public DbSet<User> Users => Set<User>();
 

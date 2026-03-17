@@ -1,4 +1,4 @@
-namespace Fintech.NotificationService.Domain.Enums;
+namespace Fintech.Contracts.Notifications;
 
 public enum NotificationMessageType
 {
@@ -6,5 +6,7 @@ public enum NotificationMessageType
     OtpRequested = 2,
     TransferCompleted = 3,
     TransferFailed = 4,
-    FraudAlert = 5
+    FraudAlert = 5,
+    PasswordResetRequested = 6,
+    EmailVerificationRequested = 7
 }

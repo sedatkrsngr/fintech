@@ -25,7 +25,8 @@ public sealed class JwtTokenService : ITokenService
             new(JwtRegisteredClaimNames.Sub, user.Id.Value.ToString()),
             new(JwtRegisteredClaimNames.Email, user.Email.Value),
             new(ClaimTypes.NameIdentifier, user.Id.Value.ToString()),
-            new(ClaimTypes.Email, user.Email.Value)
+            new(ClaimTypes.Email, user.Email.Value),
+            new("subject_type", "user")
         };
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtOptions.SigningKey));

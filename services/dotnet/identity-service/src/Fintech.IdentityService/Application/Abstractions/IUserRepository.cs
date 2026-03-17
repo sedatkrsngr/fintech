@@ -10,4 +10,6 @@ public interface IUserRepository
     Task<User?> GetByIdAsync(UserId userId, CancellationToken cancellationToken = default);
 
     Task<User?> GetByEmailAsync(Email email, CancellationToken cancellationToken = default);
+
+    Task UpdateAsync(User user, CancellationToken cancellationToken = default);
 }

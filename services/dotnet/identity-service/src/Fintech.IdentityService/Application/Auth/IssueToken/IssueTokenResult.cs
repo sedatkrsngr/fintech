@@ -2,6 +2,8 @@ namespace Fintech.IdentityService.Application.Auth.IssueToken;
 
 public sealed record IssueTokenResult(
     string AccessToken,
-    DateTime ExpiresAtUtc,
+    DateTime AccessTokenExpiresAtUtc,
+    string RefreshToken,
+    DateTime RefreshTokenExpiresAtUtc,
     Guid UserId,
     string Email);
