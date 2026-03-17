@@ -25,6 +25,16 @@ public sealed class UserConfiguration : IEntityTypeConfiguration<User>
             .HasMaxLength(320)
             .IsRequired();
 
+        builder.HasIndex(x => x.Email)
+            .IsUnique();
+
+        builder.Property(x => x.PasswordHash)
+            .HasConversion(
+                passwordHash => passwordHash.Value,
+                value => Domain.ValueObjects.PasswordHash.Create(value))
+            .HasMaxLength(512)
+            .IsRequired();
+
         builder.Property(x => x.Status)
             .HasConversion<string>()
             .HasMaxLength(32)

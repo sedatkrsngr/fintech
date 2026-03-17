@@ -32,7 +32,7 @@ public sealed class UsersController : ControllerBase
         [FromBody] RegisterUserRequest request,
         [FromServices] RegisterUserHandler handler)
     {
-        var command = new RegisterUserCommand(request.Email);
+        var command = new RegisterUserCommand(request.Email, request.Password);
         var result = await handler.HandleAsync(command, HttpContext.RequestAborted);
 
         var response = new RegisterUserResponse(result.UserId, result.Email, result.CreatedAtUtc);

@@ -5,10 +5,11 @@ namespace Fintech.IdentityService.Domain.Entities;
 
 public sealed class User
 {
-    private User(UserId id, Email email)
+    private User(UserId id, Email email, PasswordHash passwordHash)
     {
         Id = id;
         Email = email;
+        PasswordHash = passwordHash;
         Status = UserStatus.Active;
         CreatedAtUtc = DateTime.UtcNow;
     }
@@ -17,18 +18,25 @@ public sealed class User
 
     public Email Email { get; private set; }
 
+    public PasswordHash PasswordHash { get; private set; }
+
     public UserStatus Status { get; private set; }
 
     public DateTime CreatedAtUtc { get; }
 
-    public static User Create(Email email)
+    public static User Create(Email email, PasswordHash passwordHash)
     {
-        return new User(UserId.New(), email);
+        return new User(UserId.New(), email, passwordHash);
     }
 
     public void ChangeEmail(Email email)
     {
         Email = email;
+    }
+
+    public void ChangePasswordHash(PasswordHash passwordHash)
+    {
+        PasswordHash = passwordHash;
     }
 
     public void Suspend()

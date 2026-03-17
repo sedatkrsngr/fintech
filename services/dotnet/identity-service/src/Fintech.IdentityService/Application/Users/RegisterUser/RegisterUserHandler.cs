@@ -7,10 +7,14 @@ namespace Fintech.IdentityService.Application.Users.RegisterUser;
 public sealed class RegisterUserHandler
 {
     private readonly IUserRepository _userRepository;
+    private readonly IPasswordHashingService _passwordHashingService;
 
-    public RegisterUserHandler(IUserRepository userRepository)
+    public RegisterUserHandler(
+        IUserRepository userRepository,
+        IPasswordHashingService passwordHashingService)
     {
         _userRepository = userRepository;
+        _passwordHashingService = passwordHashingService;
     }
 
     public async Task<RegisterUserResult> HandleAsync(
@@ -18,7 +22,8 @@ public sealed class RegisterUserHandler
         CancellationToken cancellationToken = default)
     {
         var email = Email.Create(command.Email);
-        var user = User.Create(email);
+        var passwordHash = PasswordHash.Create(_passwordHashingService.HashPassword(command.Password));
+        var user = User.Create(email, passwordHash);
         await _userRepository.AddAsync(user, cancellationToken);
 
         return new RegisterUserResult(user.Id.Value, user.Email.Value, user.CreatedAtUtc);
