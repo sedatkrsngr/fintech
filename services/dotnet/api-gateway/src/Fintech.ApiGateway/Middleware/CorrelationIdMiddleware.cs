@@ -15,6 +15,7 @@ public sealed class CorrelationIdMiddleware
     {
         var correlationId = GetOrCreateCorrelationId(context);
 
+        context.Request.Headers[HeaderName] = correlationId;
         context.TraceIdentifier = correlationId;
         context.Response.Headers[HeaderName] = correlationId;
 

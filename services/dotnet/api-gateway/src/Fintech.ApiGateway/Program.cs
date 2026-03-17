@@ -9,5 +9,6 @@ var app = builder.Build();
 app.UseApiGatewayPipeline();
 app.UseAuthorization();
 app.MapControllers();
+app.MapReverseProxy();
 
 app.Run();
