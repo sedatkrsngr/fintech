@@ -1,0 +1,10 @@
+{
+  "name": "fintech-monorepo",
+  "private": true,
+  "packageManager": "pnpm@10.6.3",
+  "scripts": {
+    "dev:web": "pnpm --dir apps/web-app dev",
+    "build:web": "pnpm --dir apps/web-app build",
+    "start:web": "pnpm --dir apps/web-app start"
+  }
+}
